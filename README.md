@@ -7,3 +7,6 @@
 
 # 	Description du projet :
 #	Développement d'un jeu de labyrinthe en utilisant : Java, (Quel moteur de jeu ? À voir), Git, (Ant ou Maven ? À voir), Méthode Agile
+
+#	Comment compiler et exécuter l'application ?
+#	==> (Dépend de l'outil de build choisi avec l'équipe)
