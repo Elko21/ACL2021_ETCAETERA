@@ -6,7 +6,7 @@
 # 	_ Yassine NADRANI
 
 # 	Description du projet :
-#	Développement d'un jeu de labyrinthe en utilisant : Java, (Quel moteur de jeu ? À voir), Git, Maven, Méthode Agile
+#	Développement d'un jeu de labyrinthe en utilisant : Java, (Quel moteur de jeu ? À voir), Git, Maven, Méthode Agile.
 
 #	Comment compiler et exécuter l'application ?
 #	==> (Dépend de l'outil de build choisi avec l'équipe)
