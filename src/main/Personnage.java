@@ -1,5 +1,6 @@
 package main;
-
+//Classe Personnage qui représente les personnages du labyrinthe (monstres, héros). Ils infligent 
+//tous des dégats et ont des points de vie. Ils peuvent attaquer (pas de riposte).
 public class Personnage extends Entite{
 	private int damage;
 	private int hp;
