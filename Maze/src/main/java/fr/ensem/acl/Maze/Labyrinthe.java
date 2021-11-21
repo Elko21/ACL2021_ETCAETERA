@@ -1,4 +1,8 @@
 package fr.ensem.acl.Maze;
+/*
+ * @author Elko R.
+ * 
+ * */
 
 public class Labyrinthe {
 	protected Hero hero;
