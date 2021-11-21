@@ -26,4 +26,4 @@
 		_ Ensuite : java -jar target/Maze-0.0.1-SNAPSHOT.jar
 
 # Comment jouer au jeu du labyrinthe qu'on a nommé "Maze" ?
-	(EN COURS DE RÉDACTION ...)
+	(EN COURS DE RÉDACTION ....)
