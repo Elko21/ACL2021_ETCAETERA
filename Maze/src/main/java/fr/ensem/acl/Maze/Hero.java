@@ -17,7 +17,7 @@ public class Hero {
 		return this.posY;
 	}
 	
-	public void update(int x, int y) {
+	public void moveTo(int x, int y) {
 		this.posX = x;
 		this.posY = y;
 	}

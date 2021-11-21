@@ -99,7 +99,7 @@ public class Labyrinthe {
 			// Zone accessible donc le héro se déplace et laisse une case libre derrière lui
 			this.terrain[this.hero.getPosY()][this.hero.getPosX()] = '+';
 			// Mise à jour de la position du héro
-			this.hero.update(x,y);
+			this.hero.moveTo(x,y);
 			this.terrain[this.hero.getPosY()][this.hero.getPosX()] = 'h';			
 			
 		}
