@@ -95,7 +95,7 @@ public class Labyrinthe {
 		}
 		
 		// Vérification si zone accessible
-		if (this.terrain[y][x] != '-') {
+		if (this.mur.isFree(x, y)) {
 			// Zone accessible donc le héro se déplace et laisse une case libre derrière lui
 			this.terrain[this.hero.getPosY()][this.hero.getPosX()] = '+';
 			// Mise à jour de la position du héro
