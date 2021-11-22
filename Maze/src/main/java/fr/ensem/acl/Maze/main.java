@@ -21,7 +21,7 @@ public class main {
 			// Affichage du labyrinthe avec tous les éléments du décor
 			lab.display();
 			
-			System.out.println("Entrez une commande (L/R/U/D) : ");
+			System.out.println("Entrez une commande (Q/S/D/Z) : ");
 			String cmd = lectureClavier.next();
 			lab.canMove(cmd);
 			
