@@ -27,7 +27,7 @@ public class main {
 			
 			if (lab.tresor.isEnd(lab.hero.getPosX(),lab.hero.getPosY())) {
 				finished = true;
-				System.out.println("Vous avez atteint le trésor, Partie terminée !");
+				System.out.println("Vous avez atteint le trésor. Partie terminée !");
 			}
 			
 		} while(!finished);
