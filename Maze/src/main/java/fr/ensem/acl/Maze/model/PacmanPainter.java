@@ -17,8 +17,8 @@ public class PacmanPainter implements GamePainter {
 	/**
 	 * la taille des cases
 	 */
-	protected static final int WIDTH = 10000;
-	protected static final int HEIGHT = 10000;
+	private int WIDTH;
+	private int HEIGHT;
 
 	/**
 	 * appelle constructeur parent
@@ -28,6 +28,8 @@ public class PacmanPainter implements GamePainter {
 	 */
 	public PacmanPainter(PacmanGame jeu) {
 		this.jeu = jeu;
+		this.WIDTH = this.jeu.getLabyrinthe().getL() * 50;
+		this.HEIGHT = this.jeu.getLabyrinthe().getH() * 50;
 	}
 
 	/**
@@ -38,21 +40,54 @@ public class PacmanPainter implements GamePainter {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 		//crayon.setColor(Color.DARK_GRAY);
 		//crayon.fillOval(1,1,10,10);
-		drawHeros(im);
-		drawTresor(im);
+		drawGround(im);
+		
+		for(int i = 0; i < this.jeu.getLabyrinthe().getH(); i++) {
+			for(int j = 0; j < this.jeu.getLabyrinthe().getL(); j++) {
+				switch(this.jeu.getLabyrinthe().getTerrain(i,j)) 
+				{
+					case '-':
+						drawWall(im,50*j,50*i);
+						break;
+					case '+':
+						break;
+					case 'h':
+						drawHeros(im);
+						break;
+					case 't':
+						drawTresor(im);
+						break;						
+				}					
+			}
+			
+		}
+		
+	}
+	
+	public void drawGround(BufferedImage im) {
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		groundgraph.setColor(Color.LIGHT_GRAY);
+		groundgraph.fillRect(0,0,WIDTH,HEIGHT);
+	}
+	
+	public void drawWall(BufferedImage im,int X, int Y) {
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		groundgraph.setColor(Color.DARK_GRAY);
+		groundgraph.fillRect(X,Y,50,50);
 	}
 	
 	public void drawHeros(BufferedImage im) {
 		Graphics2D herograph = (Graphics2D) im.getGraphics();
-		herograph.setColor(Color.red);
-		herograph.fillOval(jeu.heros.getPosX(),jeu.heros.getPosY(), 100, 100);
+		herograph.setColor(Color.BLUE);
+		herograph.fillOval(this.jeu.getLabyrinthe().getHero().getPosX(),this.jeu.getLabyrinthe().getHero().getPosY(), 50, 50);
 	}
 	
 	public void drawTresor(BufferedImage im) {
 		Graphics2D tresgraph = (Graphics2D) im.getGraphics();
-		tresgraph.setColor(Color.yellow);
-		tresgraph.fillOval(jeu.tresor.getPosX(),jeu.tresor.getPosY(),100,100);
+		tresgraph.setColor(Color.YELLOW);
+		tresgraph.fillOval(this.jeu.getLabyrinthe().getTresor().getPosX(),this.jeu.getLabyrinthe().getTresor().getPosY(),50,50);
 	}
+	
 	
 	@Override
 	public int getWidth() {

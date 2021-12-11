@@ -15,15 +15,18 @@ import fr.ensem.acl.Maze.engine.Game;
  * 
  */
 public class PacmanGame implements Game {
-	protected Hero heros;
-	protected Tresor tresor;
+	private Labyrinthe maze;
+	
+	public Labyrinthe getLabyrinthe() {
+		return this.maze;
+	}
+	
 	/**
 	 * constructeur avec fichier source pour le help
 	 * 
 	 */
 	public PacmanGame(String source) {
-		this.heros= new Hero(0,0);
-		this.tresor = new Tresor(500,500);
+		this.maze = new Labyrinthe(20,30);
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
@@ -36,7 +39,7 @@ public class PacmanGame implements Game {
 			System.out.println("Help not available");
 		}
 	}
-
+	
 	/**
 	 * faire evoluer le jeu suite a une commande
 	 * 
@@ -45,20 +48,34 @@ public class PacmanGame implements Game {
 	@Override
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
+		int x = this.maze.getHero().getPosX();
+		int y = this.maze.getHero().getPosY();
+		
 		switch(commande){
 		case LEFT:
-			heros.setPosX(heros.getPosX()-50);
+			x = x - 50;
 			break;
 		case RIGHT:
-			heros.setPosX(heros.getPosX()+50);
+			x = x + 50;
 			break;
 		case DOWN:
-			heros.setPosY(heros.getPosY()+50);
+			y = y + 50;
 			break;
 		case UP:
-			heros.setPosY(heros.getPosY()-50);
+			y = y -50;
 			break;
 		}
+		
+		
+		// Vérification si zone accessible
+		if (this.maze.canMove(x/50,y/50)) {
+			// Zone accessible donc le héro se déplace et laisse une case libre derrière lui
+			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'+');
+			// Mise à jour de la position du héro
+			this.maze.getHero().moveTo(x,y);
+			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'h');			
+		}
+		
 		
 	}
 
@@ -68,7 +85,7 @@ public class PacmanGame implements Game {
 	@Override
 	public boolean isFinished() {
 		
-		return heros.getPosX()==tresor.getPosX() && heros.getPosY()==tresor.getPosY();
+		return this.maze.getHero().getPosX()==this.maze.getTresor().getPosX() && this.maze.getHero().getPosY()==this.maze.getTresor().getPosY();
 	}
 
 }
