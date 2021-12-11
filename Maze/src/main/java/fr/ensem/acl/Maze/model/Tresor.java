@@ -9,7 +9,7 @@ public class Tresor extends Entite{
 	}
 	
 	public boolean isEnd(int x, int y) {
-		if (this.getX() == x && this.getY() == y)
+		if (this.getPosX() == x && this.getPosY() == y)
 			return true;
 		else
 			return false;
