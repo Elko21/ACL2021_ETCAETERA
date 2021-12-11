@@ -41,16 +41,19 @@ public class PacmanPainter implements GamePainter {
 		drawHeros(im);
 		drawTresor(im);
 	}
+	
 	public void drawHeros(BufferedImage im) {
 		Graphics2D herograph = (Graphics2D) im.getGraphics();
 		herograph.setColor(Color.red);
-		herograph.fillOval(jeu.heros.getX(),jeu.heros.getY(), 100, 100);
-	}	
+		herograph.fillOval(jeu.heros.getPosX(),jeu.heros.getPosY(), 100, 100);
+	}
+	
 	public void drawTresor(BufferedImage im) {
 		Graphics2D tresgraph = (Graphics2D) im.getGraphics();
 		tresgraph.setColor(Color.yellow);
-		tresgraph.fillOval(jeu.tresor.getX(),jeu.tresor.getY(),100,100);
+		tresgraph.fillOval(jeu.tresor.getPosX(),jeu.tresor.getPosY(),100,100);
 	}
+	
 	@Override
 	public int getWidth() {
 		return WIDTH;

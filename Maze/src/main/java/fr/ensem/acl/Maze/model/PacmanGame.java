@@ -45,18 +45,18 @@ public class PacmanGame implements Game {
 	@Override
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
-		switch(commande) {
+		switch(commande){
 		case LEFT:
-			heros.setX(heros.getX()-50);
+			heros.setPosX(heros.getPosX()-50);
 			break;
 		case RIGHT:
-			heros.setX(heros.getX()+50);
+			heros.setPosX(heros.getPosX()+50);
 			break;
 		case DOWN:
-			heros.setY(heros.getY()+50);
+			heros.setPosY(heros.getPosY()+50);
 			break;
 		case UP:
-			heros.setY(heros.getY()-50);
+			heros.setPosY(heros.getPosY()-50);
 			break;
 		}
 		
@@ -68,7 +68,7 @@ public class PacmanGame implements Game {
 	@Override
 	public boolean isFinished() {
 		
-		return heros.getX()==tresor.getX() && heros.getY()==tresor.getY() ;
+		return heros.getPosX()==tresor.getPosX() && heros.getPosY()==tresor.getPosY();
 	}
 
 }

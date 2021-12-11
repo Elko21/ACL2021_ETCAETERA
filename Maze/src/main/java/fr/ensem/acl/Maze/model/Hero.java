@@ -7,7 +7,7 @@ public class Hero extends Entite{
 	}
 	
 	public void moveTo(int x, int y) {
-		this.setX(x);
-		this.setY(y);
+		this.setPosX(x);
+		this.setPosY(y);
 	}
 }
