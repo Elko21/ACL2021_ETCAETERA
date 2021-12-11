@@ -8,16 +8,16 @@ public class Entite {
 		this.posY = Y;
 	}
 	
-	public int getX() {
+	public int getPosX() {
 		return this.posX;
 	}
-	public int getY() {
+	public int getPosY() {
 		return this.posY;
 	}
-	public void setX(int x) {
+	public void setPosX(int x) {
 		this.posX = x;
 	}
-	public void setY(int y) {
+	public void setPosY(int y) {
 		this.posY = y;
 	}
 }

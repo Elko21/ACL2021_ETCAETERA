@@ -60,7 +60,6 @@ public class PacmanController implements GameController {
 			this.commandeEnCours = Cmd.RIGHT;
 			break;
 		}
-
 	}
 
 	@Override
