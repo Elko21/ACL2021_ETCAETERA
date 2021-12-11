@@ -23,7 +23,7 @@ public class PacmanGame implements Game {
 	 */
 	public PacmanGame(String source) {
 		this.heros= new Hero(0,0);
-		this.tresor = new Tresor(5,5);
+		this.tresor = new Tresor(500,500);
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
@@ -47,16 +47,16 @@ public class PacmanGame implements Game {
 		System.out.println("Execute "+commande);
 		switch(commande) {
 		case LEFT:
-			heros.setX(heros.getX()-1);
+			heros.setX(heros.getX()-50);
 			break;
 		case RIGHT:
-			heros.setX(heros.getX()+1);
+			heros.setX(heros.getX()+50);
 			break;
 		case DOWN:
-			heros.setY(heros.getY()+1);
+			heros.setY(heros.getY()+50);
 			break;
 		case UP:
-			heros.setY(heros.getY()-1);
+			heros.setY(heros.getY()-50);
 			break;
 		}
 		
