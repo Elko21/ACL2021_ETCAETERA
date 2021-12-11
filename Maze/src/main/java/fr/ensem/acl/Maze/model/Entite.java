@@ -1,4 +1,4 @@
-package model;
+package fr.ensem.acl.Maze.model;
 public class Entite {
 	private int posX;
 	private int posY;
