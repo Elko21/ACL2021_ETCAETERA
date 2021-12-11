@@ -78,7 +78,7 @@
         	<configuration>
           		<archive>
             		<manifest>
-            			<mainClass>fr.ensem.acl.Maze.main</mainClass>
+            			<mainClass>fr.ensem.acl.start.Main</mainClass>
             		</manifest>
           		</archive>
         	</configuration>
