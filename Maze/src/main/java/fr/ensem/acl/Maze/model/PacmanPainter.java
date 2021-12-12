@@ -41,7 +41,6 @@ public class PacmanPainter implements GamePainter {
 		//crayon.setColor(Color.DARK_GRAY);
 		//crayon.fillOval(1,1,10,10);
 		drawGround(im);
-		
 		for(int i = 0; i < this.jeu.getLabyrinthe().getH(); i++) {
 			for(int j = 0; j < this.jeu.getLabyrinthe().getL(); j++) {
 				switch(this.jeu.getLabyrinthe().getTerrain(i,j)) 

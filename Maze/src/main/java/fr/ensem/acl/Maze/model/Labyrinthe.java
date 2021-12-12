@@ -3,7 +3,7 @@ package fr.ensem.acl.Maze.model;
 public class Labyrinthe {
 	private Hero hero;
 	private Tresor tresor;
-	private Mur mur = new Mur(2,1);
+	private Mur mur = new Mur(10,15);
 	private char terrain[][];
 	private int l;
 	private int h;
@@ -30,9 +30,11 @@ public class Labyrinthe {
 		
 		for(int i = 0; i < h; i++) {
 			for(int j = 0; j < l; j++) {
-				if ((i != 0 && i != (this.h)-1 && j != 0 && j != (this.l)-1) && this.mur.isFree(j,i))
+				if ((i != 0 && i != (this.h)-1 && j != 0 && j != (this.l)-1) && this.mur.isFree(i,j))
 					this.terrain[i][j] = '+';
-				else
+				else 
+					this.terrain[i][j] = '-';
+				if (i == this.mur.getPosX() && j == this.mur.getPosY())
 					this.terrain[i][j] = '-';
 				
 				if (i == (this.hero.getPosY()/50) && j == (this.hero.getPosX()/50))
