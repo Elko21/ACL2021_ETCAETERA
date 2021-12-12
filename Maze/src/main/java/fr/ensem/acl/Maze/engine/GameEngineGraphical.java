@@ -67,7 +67,9 @@ public class GameEngineGraphical {
 			// met en attente
 			Thread.sleep(100);
 		}
-		System.out.println("Le jeu est fini");
+		String endText="Vous avez trouvé le trésor, vous êtes riche!";
+		// affiche le texte de victoire sur le panel
+		this.gui.showText(endText);
 	}
 
 }

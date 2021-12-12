@@ -1,6 +1,9 @@
 package fr.ensem.acl.Maze.engine;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 
 /**
@@ -45,6 +48,21 @@ public class GraphicalInterface  {
 	 */
 	public void paint() {
 		this.panel.drawGame();	
+	}
+	
+	public void showText(String t) {
+		JFrame fr=new JFrame();
+		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fr.setSize(800, 300); 
+		
+		JLabel label = new JLabel(t,SwingConstants.CENTER);
+		
+		label.setFont(new Font("Serif", Font.BOLD, 40));
+        fr.add(label);
+        
+        fr.setVisible(true);
+		fr.getContentPane().setFocusable(true);
+		fr.getContentPane().requestFocus();
 	}
 	
 }
