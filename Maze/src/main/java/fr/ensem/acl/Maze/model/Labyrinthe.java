@@ -28,7 +28,7 @@ public class Labyrinthe {
 	
 		this.hero = new Hero(50,50);
 	
-		this.monstre=new Monstre(150,150);
+		this.monstre=new Monstre(250,150);
 		
 		this.tresor = new Tresor((this.l-2)*50,(this.h-2)*50);
 		

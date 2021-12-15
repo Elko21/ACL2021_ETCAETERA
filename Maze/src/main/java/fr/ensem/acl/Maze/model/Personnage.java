@@ -8,5 +8,16 @@ public class Personnage extends Entite{
 		this.setPosX(x);
 		this.setPosY(y);
 	}
+	
+	public int [] posVoisineRandom() {
+		int x,y;
+		int[] direction= {-50,0,50};
+		int i =(int) (3*Math.random());
+		x=this.getPosX()+direction[i];
+		int j =(int) (3*Math.random());
+		y=this.getPosY()+direction[j];
+		int [] pos = {x,y};
+		return pos;
+	}
 }
 

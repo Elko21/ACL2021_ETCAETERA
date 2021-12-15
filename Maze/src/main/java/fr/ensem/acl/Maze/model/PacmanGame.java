@@ -51,34 +51,50 @@ public class PacmanGame implements Game {
 		int x = this.maze.getHero().getPosX();
 		int y = this.maze.getHero().getPosY();
 		
+		boolean isCommande = false;
 		switch(commande){
 		case LEFT:
 			x = x - 50;
+			isCommande = true;
 			break;
 		case RIGHT:
 			x = x + 50;
+			isCommande = true;
 			break;
 		case DOWN:
 			y = y + 50;
+			isCommande = true;
 			break;
 		case UP:
 			y = y -50;
+			isCommande = true;
 			break;
 		}
 		
-		
+	
 		// Vérification si zone accessible
 		if (this.maze.canMove(x/50,y/50)) {
 			// Zone accessible donc le personnage (héros ou monstre) se déplace et laisse une case libre derrière lui
 			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'+');
-			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
+			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'+');
 			// Mise à jour de la position du héro
 			this.maze.getHero().moveTo(x,y);
 			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'h');			
 			
 			// Mise à jour de la position du/des monstre(s)
-			//this.maze.getMonstre().moveTo(x,y);
-			//this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');	
+			
+			if (isCommande) {
+				int xMonster,yMonster;
+				xMonster= this.maze.getMonstre().posVoisineRandom()[0];
+				yMonster= this.maze.getMonstre().posVoisineRandom()[1];
+				if (this.maze.canMove(xMonster/50, yMonster/50)) {
+					this.maze.getMonstre().moveTo(xMonster,yMonster);
+				}
+				isCommande=false;
+			}
+			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
+
+			
 		}
 		
 		
