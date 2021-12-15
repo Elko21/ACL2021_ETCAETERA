@@ -55,7 +55,10 @@ public class PacmanPainter implements GamePainter {
 						break;
 					case 't':
 						drawTresor(im);
-						break;						
+						break;		
+					case 'm':
+						drawMonstre(im);
+						break;
 				}					
 			}
 			
@@ -85,6 +88,12 @@ public class PacmanPainter implements GamePainter {
 		Graphics2D tresgraph = (Graphics2D) im.getGraphics();
 		tresgraph.setColor(Color.YELLOW);
 		tresgraph.fillOval(this.jeu.getLabyrinthe().getTresor().getPosX(),this.jeu.getLabyrinthe().getTresor().getPosY(),50,50);
+	}
+	
+	public void drawMonstre(BufferedImage im) {
+		Graphics2D monstregraph = (Graphics2D) im.getGraphics();
+		monstregraph.setColor(Color.RED);
+		monstregraph.fillOval(this.jeu.getLabyrinthe().getMonstre().getPosX(),this.jeu.getLabyrinthe().getMonstre().getPosY(), 50, 50);
 	}
 	
 	

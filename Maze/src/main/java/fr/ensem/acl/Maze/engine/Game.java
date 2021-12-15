@@ -21,6 +21,8 @@ public interface Game {
 	/**
 	 * @return true si et seulement si le jeu est fini
 	 */
-	public boolean isFinished();
+	public boolean isTresorAtteint();
+	public boolean doesMonstreAttaque();
+
 
 }

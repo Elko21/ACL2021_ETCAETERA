@@ -69,11 +69,16 @@ public class PacmanGame implements Game {
 		
 		// Vérification si zone accessible
 		if (this.maze.canMove(x/50,y/50)) {
-			// Zone accessible donc le héro se déplace et laisse une case libre derrière lui
+			// Zone accessible donc le personnage (héros ou monstre) se déplace et laisse une case libre derrière lui
 			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'+');
+			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
 			// Mise à jour de la position du héro
 			this.maze.getHero().moveTo(x,y);
 			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'h');			
+			
+			// Mise à jour de la position du/des monstre(s)
+			//this.maze.getMonstre().moveTo(x,y);
+			//this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');	
 		}
 		
 		
@@ -83,9 +88,15 @@ public class PacmanGame implements Game {
 	 * verifier si le jeu est fini
 	 */
 	@Override
-	public boolean isFinished() {
+	public boolean isTresorAtteint() {
 		
-		return this.maze.getHero().getPosX()==this.maze.getTresor().getPosX() && this.maze.getHero().getPosY()==this.maze.getTresor().getPosY();
+		return( this.maze.getHero().getPosX()==this.maze.getTresor().getPosX() && this.maze.getHero().getPosY()==this.maze.getTresor().getPosY());
+
+	}
+	
+	@Override
+	public boolean doesMonstreAttaque() {
+		return(this.maze.getHero().getPosX()==this.maze.getMonstre().getPosX() && this.maze.getHero().getPosY()==this.maze.getMonstre().getPosY());
 	}
 
 }

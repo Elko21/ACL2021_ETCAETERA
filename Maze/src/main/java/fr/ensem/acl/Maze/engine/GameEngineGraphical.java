@@ -57,7 +57,7 @@ public class GameEngineGraphical {
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
 
 		// boucle de game
-		while (!this.game.isFinished()) {
+		while (!(this.game.isTresorAtteint()|| this.game.doesMonstreAttaque())) {
 			// demande controle utilisateur
 			Cmd c = this.gameController.getCommand();
 			// fait evoluer le game
@@ -67,8 +67,11 @@ public class GameEngineGraphical {
 			// met en attente
 			Thread.sleep(100);
 		}
-		String endText="Vous avez trouvé le trésor, vous êtes riche!";
-		// affiche le texte de victoire sur le panel
+		String endText;
+		if (this.game.isTresorAtteint()) endText = "Vous avez gagné! Vous êtes riche!";
+		else endText="Vous avez perdu!";
+		
+		// affiche le texte de victoire ou d'échec sur le panel
 		this.gui.showText(endText);
 	}
 
