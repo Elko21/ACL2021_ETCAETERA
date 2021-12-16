@@ -26,7 +26,7 @@ public class PacmanGame implements Game {
 	 * 
 	 */
 	public PacmanGame(String source) {
-		this.maze = new Labyrinthe(15,30);
+		this.maze = new Labyrinthe("maze.txt");
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
