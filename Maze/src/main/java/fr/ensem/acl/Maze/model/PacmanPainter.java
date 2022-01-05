@@ -1,8 +1,13 @@
 package fr.ensem.acl.Maze.model;
 
 import java.awt.Color;
+import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
 import fr.ensem.acl.Maze.engine.GamePainter;
 
@@ -68,14 +73,21 @@ public class PacmanPainter implements GamePainter {
 	
 	public void drawGround(BufferedImage im) {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
-		groundgraph.setColor(Color.LIGHT_GRAY);
+		groundgraph.setColor(new Color(208,212,92));
 		groundgraph.fillRect(0,0,WIDTH,HEIGHT);
 	}
 	
 	public void drawWall(BufferedImage im,int X, int Y) {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
-		groundgraph.setColor(Color.DARK_GRAY);
-		groundgraph.fillRect(X,Y,50,50);
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Bush.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		groundgraph.drawImage(img,X+2,Y+2,46,46, null);
 	}
 	
 	public void drawHeros(BufferedImage im) {
@@ -85,9 +97,16 @@ public class PacmanPainter implements GamePainter {
 	}
 	
 	public void drawTresor(BufferedImage im) {
-		Graphics2D tresgraph = (Graphics2D) im.getGraphics();
-		tresgraph.setColor(Color.YELLOW);
-		tresgraph.fillOval(this.jeu.getLabyrinthe().getTresor().getPosX(),this.jeu.getLabyrinthe().getTresor().getPosY(),50,50);
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Chest.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getTresor().getPosX()+2,this.jeu.getLabyrinthe().getTresor().getPosY()+2,46,46, null);
 	}
 	
 	public void drawMonstre(BufferedImage im) {
