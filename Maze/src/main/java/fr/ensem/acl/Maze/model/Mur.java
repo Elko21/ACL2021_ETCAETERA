@@ -4,7 +4,7 @@ public class Mur extends Entite{
 	private int posX;
 	private int posY;
 	
-	Mur(int x, int y){ 
+	public Mur(int x, int y){ 
 		super(x,y);
 	}
 	
