@@ -11,6 +11,7 @@ public class Personnage extends Entite{
 		this.setPosX(x);
 		this.setPosY(y);
 	}
+	
 	public void attack(Personnage p) {
 		p.hp -= this.attaque;
 	}
