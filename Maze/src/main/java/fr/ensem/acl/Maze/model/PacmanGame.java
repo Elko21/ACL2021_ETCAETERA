@@ -105,11 +105,12 @@ public class PacmanGame implements Game {
 	 */
 	@Override
 	public boolean isTresorAtteint() {
-		
 		return( this.maze.getHero().getPosX()==this.maze.getTresor().getPosX() && this.maze.getHero().getPosY()==this.maze.getTresor().getPosY());
-
 	}
-	
+	@Override
+	public boolean isTrapTriggered() {
+		return (this.maze.getHero().getPosX()==this.maze.getTrap().getPosX() && this.maze.getHero().getPosY()==this.maze.getTrap().getPosY());
+	}
 	@Override
 	public boolean doesMonstreAttaque() {
 		return(this.maze.getHero().getPosX()==this.maze.getMonstre().getPosX() && this.maze.getHero().getPosY()==this.maze.getMonstre().getPosY());

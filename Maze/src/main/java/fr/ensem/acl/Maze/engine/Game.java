@@ -23,6 +23,7 @@ public interface Game {
 	 */
 	public boolean isTresorAtteint();
 	public boolean doesMonstreAttaque();
+	public boolean isTrapTriggered();
 
 
 }
