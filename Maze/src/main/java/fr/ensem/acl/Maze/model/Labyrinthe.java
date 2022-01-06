@@ -64,20 +64,6 @@ public class Labyrinthe {
 				}
 			}
 		}
-		/*
-		 * for(int i = 0; i < h; i++) { for(int j = 0; j < l; j++) { if ((i != 0 && i !=
-		 * (this.h)-1 && j != 0 && j != (this.l)-1) && this.mur.isFree(i,j))
-		 * this.terrain[i][j] = '+'; else this.terrain[i][j] = '-'; if (i ==
-		 * this.mur.getPosX() && j == this.mur.getPosY()) this.terrain[i][j] = '-';
-		 * 
-		 * if (i == (this.hero.getPosY()/50) && j == (this.hero.getPosX()/50))
-		 * this.terrain[i][j] = 'h';
-		 * 
-		 * if (this.tresor.isEnd((j+1)*50,(i+1)*50)) this.terrain[i][j] = 't';
-		 */
-		/*
-		 * } }
-		 */
 	}
 	
 	public boolean canMove(int X,int Y) {

@@ -21,7 +21,7 @@ public interface Game {
 	/**
 	 * @return true si et seulement si le jeu est fini
 	 */
-	public boolean isTresorAtteint();
+	public boolean isFinished();
 	public boolean doesMonstreAttaque();
 	public boolean isTrapTriggered();
 

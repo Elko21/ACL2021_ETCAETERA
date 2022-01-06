@@ -7,8 +7,8 @@ public class Piege extends Entite{
 	}
 	
 	
-	public boolean isTriggered(int xh,int yh){
-		return (this.getPosX()==xh && this.getPosY()==yh);
+	public boolean isTriggered(int x,int y){
+		return (this.getPosX()==x && this.getPosY()==y);
 	}
 
 }
