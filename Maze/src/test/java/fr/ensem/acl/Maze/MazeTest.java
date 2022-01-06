@@ -12,6 +12,7 @@ public class MazeTest {
 	private Monstre monstre;
 	private Piege piege;
 	private Mur mur;
+	private Labyrinthe lab;
 	
 	@Before
 	public void setUp() throws Exception {
