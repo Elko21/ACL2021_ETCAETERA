@@ -91,16 +91,23 @@ public class PacmanPainter implements GamePainter {
 	}
 	
 	public void drawHeros(BufferedImage im) {
-		Graphics2D herograph = (Graphics2D) im.getGraphics();
-		herograph.setColor(Color.BLUE);
-		herograph.fillOval(this.jeu.getLabyrinthe().getHero().getPosX(),this.jeu.getLabyrinthe().getHero().getPosY(), 50, 50);
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Character\\Char_one\\Idle\\character1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getHero().getPosX()+2,this.jeu.getLabyrinthe().getHero().getPosY()+2,46,46, null);
 	}
 	
 	public void drawTresor(BufferedImage im) {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Chest.png"));
+			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Chest1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,9 +117,16 @@ public class PacmanPainter implements GamePainter {
 	}
 	
 	public void drawMonstre(BufferedImage im) {
-		Graphics2D monstregraph = (Graphics2D) im.getGraphics();
-		monstregraph.setColor(Color.RED);
-		monstregraph.fillOval(this.jeu.getLabyrinthe().getMonstre().getPosX(),this.jeu.getLabyrinthe().getMonstre().getPosY(), 50, 50);
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Skeleton\\Idle\\Skeleton1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getMonstre().getPosX()+2,this.jeu.getLabyrinthe().getMonstre().getPosY()+2,46,46, null);
 	}
 	
 	
