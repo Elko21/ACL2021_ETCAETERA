@@ -19,8 +19,8 @@ public class Personnage extends Entite{
 		this.setPosY(y);
 	}
 	
-	public void attack(Personnage p) {
-		p.hp -= this.attaque;
+	public void attack(Personnage ennemi) {
+		if (this.canAttack(ennemi)) ennemi.hp -= this.attaque;
 	}
 	
 	public int [] posVoisineRandom() {
@@ -34,6 +34,28 @@ public class Personnage extends Entite{
 		return pos;
 	}
 	
-	
+	public boolean canAttack(Personnage ennemi) {
+		// Position x,y du personnage
+		int x = this.getPosX()/50;
+		int y = this.getPosY()/50;
+		
+		// Position x,y de l'ennemi
+		int xo = ennemi.getPosX()/50;
+		int yo = ennemi.getPosY()/50;
+		
+		boolean att = false;
+		switch(this.getDirection()) {
+			case 'z':
+				att = ((x == xo && y-1 == yo) || (x-1 == xo && y-1 == yo) || (x+1 == xo && y-1 == yo));
+			case 's':
+				att = ((x == xo && y+1 == yo) || (x-1 == xo && y+1 == yo) || (x+1 == xo && y+1 == yo));
+			case 'q':
+				att = ((x-1 == xo && y == yo) || (x-1 == xo && y-1 == yo) || (x-1 == xo && y+1 == yo));
+			case 'd':
+				att = ((x+1 == xo && y == yo) || (x+1 == xo && y-1 == yo) || (x+1 == xo && y+1 == yo));
+		}
+		
+		return att;
+	}
 }
 

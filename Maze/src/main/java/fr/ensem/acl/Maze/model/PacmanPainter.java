@@ -67,6 +67,7 @@ public class PacmanPainter implements GamePainter {
 				}					
 			}
 		}
+		drawHP(im);
 		drawEndingMessage(im);
 	}
 	
@@ -140,6 +141,12 @@ public class PacmanPainter implements GamePainter {
 		
 	    g.drawString(endText, Math.round(this.WIDTH/2) - 25*Math.round(endText.length()/2), Math.round(this.HEIGHT/2));
 	}
+	
+	public void drawHP(BufferedImage im) {
+		Graphics g = (Graphics) im.getGraphics();
+		
+	}
+	
 	
 	@Override
 	public int getWidth() {
