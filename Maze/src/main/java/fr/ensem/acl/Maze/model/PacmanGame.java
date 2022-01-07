@@ -89,8 +89,25 @@ public class PacmanGame implements Game {
 			
 			if (isCommande) {
 				int xMonster,yMonster;
+				int x_old=this.maze.getMonstre().getPosX();
+				int y_old=this.maze.getMonstre().getPosY();
+				
 				xMonster= this.maze.getMonstre().posVoisineRandom()[0];
 				yMonster= this.maze.getMonstre().posVoisineRandom()[1];
+				
+				if (x_old-xMonster==50 && y_old-yMonster==0){
+					this.maze.getMonstre().setDirection('q');
+				}
+				else if (x_old-xMonster==-50 && y_old-yMonster==0){
+					this.maze.getMonstre().setDirection('d');
+				}
+				else if (x_old-xMonster==0 && y_old-yMonster==50){
+					this.maze.getMonstre().setDirection('z');
+				}
+				else if (x_old-xMonster==0 && y_old-yMonster==-50){
+					this.maze.getMonstre().setDirection('s');
+				}
+				
 				if (this.maze.canMove(xMonster/50, yMonster/50)) {
 					this.maze.getMonstre().moveTo(xMonster,yMonster);
 				}
