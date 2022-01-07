@@ -5,5 +5,5 @@ package fr.ensem.acl.Maze.model;
  *
  */
 public enum Cmd {
-	 LEFT,RIGHT,UP,DOWN,IDLE; 
+	 LEFT,RIGHT,UP,DOWN,ATTACK,IDLE; 
 }

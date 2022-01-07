@@ -4,9 +4,14 @@ public class Personnage extends Entite{
 	private int hp;
 	private int attaque;
 	private int speed;
+	private char dir;
+	
+	public void setDirection(char c) { this.dir = c; }
+	public char getDirection() { return this.dir; }
 	
 	public Personnage(int x, int y){
 		super(x,y);
+		this.dir = 'd';
 	}
 	
 	public void moveTo(int x, int y) {
@@ -28,6 +33,7 @@ public class Personnage extends Entite{
 		int [] pos = {x,y};
 		return pos;
 	}
+	
 	
 }
 

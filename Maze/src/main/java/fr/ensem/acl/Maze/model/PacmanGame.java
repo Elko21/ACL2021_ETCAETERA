@@ -55,18 +55,22 @@ public class PacmanGame implements Game {
 		switch(commande){
 		case LEFT:
 			x = x - 50;
+			this.maze.getHero().setDirection('q');
 			isCommande = true;
 			break;
 		case RIGHT:
 			x = x + 50;
+			this.maze.getHero().setDirection('d');
 			isCommande = true;
 			break;
 		case DOWN:
 			y = y + 50;
+			this.maze.getHero().setDirection('s');
 			isCommande = true;
 			break;
 		case UP:
 			y = y -50;
+			this.maze.getHero().setDirection('z');
 			isCommande = true;
 			break;
 		}

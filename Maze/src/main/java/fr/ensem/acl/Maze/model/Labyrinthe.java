@@ -70,5 +70,17 @@ public class Labyrinthe {
 		return (this.terrain[Y][X] != '-');		
 	} 
 	
-
+	public boolean canDamage() {
+		int x = this.hero.getPosX()/50;
+		int y = this.hero.getPosY()/50;
+		
+		return (this.terrain[x-1][y-1] == 'm' || 
+				this.terrain[x-1][y+1] == 'm' || 
+				this.terrain[x+1][y-1] == 'm' || 
+				this.terrain[x+1][y+1] == 'm' || 
+				this.terrain[x][y-1] == 'm' || 
+				this.terrain[x-1][y] == 'm' || 
+				this.terrain[x][y+1] == 'm' || 
+				this.terrain[x+1][y] == 'm');
+	}
 }
