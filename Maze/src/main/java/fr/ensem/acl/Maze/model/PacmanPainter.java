@@ -90,15 +90,34 @@ public class PacmanPainter implements GamePainter {
 	}
 	
 	public void drawHeros(BufferedImage im) {
+		int k=0;
+		char dir=this.jeu.getLabyrinthe().getHero().getDirection();
+		
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("resources/img/Character/Char_one/Idle/character1.png"));
+			img = ImageIO.read(new File("resources/img/Character/Char_one/Char_4_sides.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
-		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getHero().getPosX()+2,this.jeu.getLabyrinthe().getHero().getPosY()+2,46,46, null);
+		if (dir=='s'){
+			k=0;
+			
+		}
+		else if (dir=='d'){
+			k=1;
+		}
+		else if (dir=='z'){
+			k=2;
+		}
+		else if(dir=='q'){
+			k=3;
+		}
+		
+		
+		int X=this.jeu.getLabyrinthe().getHero().getPosX()+2;
+		int Y=this.jeu.getLabyrinthe().getHero().getPosY()+2;
+		groundgraph.drawImage(img,X,Y,46+X,46+Y,16*k,0,16*k+16,16, null);
 	}
 	
 	public void drawTresor(BufferedImage im) {
@@ -114,16 +133,36 @@ public class PacmanPainter implements GamePainter {
 	}
 	
 	public void drawMonstre(BufferedImage im) {
+		int k=0;
+		char dir=this.jeu.getLabyrinthe().getMonstre().getDirection();
+		
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("resources/img/Skeleton/Idle/Skeleton1.png"));
+			img = ImageIO.read(new File("resources/img/Skeleton/Skel_4Sides.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
-		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getMonstre().getPosX()+2,this.jeu.getLabyrinthe().getMonstre().getPosY()+2,46,46, null);
+		if (dir=='s'){
+			k=0;
+			
+		}
+		else if (dir=='d'){
+			k=1;
+		}
+		else if (dir=='z'){
+			k=2;
+		}
+		else if(dir=='q'){
+			k=3;
+		}
+		
+		
+		int X=this.jeu.getLabyrinthe().getMonstre().getPosX()+2;
+		int Y=this.jeu.getLabyrinthe().getMonstre().getPosY()+2;
+		groundgraph.drawImage(img,X,Y,46+X,46+Y,16*k,0,16*k+16,16, null);
 	}
+	
 	
 	public void drawEndingMessage(BufferedImage im) {
 		Graphics g = (Graphics) im.getGraphics();
