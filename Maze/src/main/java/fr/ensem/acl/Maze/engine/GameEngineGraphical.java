@@ -57,7 +57,7 @@ public class GameEngineGraphical {
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
 
 		// boucle de game
-		while (!(this.game.isFinished()|| this.game.doesMonstreAttaque() || this.game.isTrapTriggered())) {
+		while (!(this.game.isFinished() || this.game.doesMonstreAttaque() || this.game.isTrapTriggered())) {
 			// demande controle utilisateur
 			Cmd c = this.gameController.getCommand();
 			// fait evoluer le game
@@ -67,12 +67,6 @@ public class GameEngineGraphical {
 			// met en attente
 			Thread.sleep(100);
 		}
-		String endText;
-		if (this.game.isFinished()) endText = "Vous avez gagné! Vous êtes riche!";
-		else if (this.game.isTrapTriggered()) endText="Vous avez marché sur un piège, vous etes mort !";
-		else endText="Le monstre vous a eu....";
-		// affiche le texte de victoire ou d'échec sur le panel
-		this.gui.showText(endText);
 	}
 
 }

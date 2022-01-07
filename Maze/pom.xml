@@ -6,7 +6,7 @@
 
   <groupId>fr.ensem.acl</groupId>
   <artifactId>Maze</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>3.2.0</version>
 
   <name>Maze</name>
   <!-- FIXME change it to the project's website -->

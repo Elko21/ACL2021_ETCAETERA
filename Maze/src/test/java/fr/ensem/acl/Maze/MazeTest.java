@@ -12,7 +12,7 @@ public class MazeTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		lab = new Labyrinthe("mapTest.txt");
+		lab = new Labyrinthe("resources/maps/mapTest.txt");
 	}
 	
 	@Test

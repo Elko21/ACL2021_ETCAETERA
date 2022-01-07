@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Graphics;
+import java.awt.Font;
 
 import fr.ensem.acl.Maze.engine.GamePainter;
 
@@ -43,8 +45,6 @@ public class PacmanPainter implements GamePainter {
 	@Override
 	public void draw(BufferedImage im) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
-		//crayon.setColor(Color.DARK_GRAY);
-		//crayon.fillOval(1,1,10,10);
 		drawGround(im);
 		for(int i = 0; i < this.jeu.getLabyrinthe().getH(); i++) {
 			for(int j = 0; j < this.jeu.getLabyrinthe().getL(); j++) {
@@ -67,7 +67,7 @@ public class PacmanPainter implements GamePainter {
 				}					
 			}
 		}
-		
+		drawEndingMessage(im);
 	}
 	
 	public void drawGround(BufferedImage im) {
@@ -76,13 +76,12 @@ public class PacmanPainter implements GamePainter {
 		groundgraph.fillRect(0,0,WIDTH,HEIGHT);
 	}
 	
-	public void drawWall(BufferedImage im,int X, int Y) {
+	public void drawWall(BufferedImage im, int X, int Y) {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Bush.png"));
+			img = ImageIO.read(new File("resources/img/Other/Misc/Bush.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -93,9 +92,8 @@ public class PacmanPainter implements GamePainter {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Character\\Char_one\\Idle\\character1.png"));
+			img = ImageIO.read(new File("resources/img/Character/Char_one/Idle/character1.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -106,9 +104,8 @@ public class PacmanPainter implements GamePainter {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Other\\Misc\\Chest1.png"));
+			img = ImageIO.read(new File("resources/img/Other/Misc/Chest1.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -119,15 +116,30 @@ public class PacmanPainter implements GamePainter {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("..\\Graphism icons\\Tiny Adventure Pack\\Tiny Adventure Pack\\Skeleton\\Idle\\Skeleton1.png"));
+			img = ImageIO.read(new File("resources/img/Skeleton/Idle/Skeleton1.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
 		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getMonstre().getPosX()+2,this.jeu.getLabyrinthe().getMonstre().getPosY()+2,46,46, null);
 	}
 	
+	public void drawEndingMessage(BufferedImage im) {
+		Graphics g = (Graphics) im.getGraphics();
+		String endText;
+		
+		Font font = new Font("Courier", Font.BOLD, 50);
+	    
+		g.setFont(font);
+	    g.setColor(Color.BLACK);
+	    
+		if (this.jeu.isFinished()) endText = "Le TRESOR !!! Vous êtes riche !";
+		else if (this.jeu.isTrapTriggered()) endText = "Un PIEGE !!! Vous êtes mort !";
+		else if(this.jeu.doesMonstreAttaque()) endText= "Ouch !!! Le monstre vous a eu ...";
+		else endText = "";
+		
+	    g.drawString(endText, Math.round(this.WIDTH/2) - 25*Math.round(endText.length()/2), Math.round(this.HEIGHT/2));
+	}
 	
 	@Override
 	public int getWidth() {
