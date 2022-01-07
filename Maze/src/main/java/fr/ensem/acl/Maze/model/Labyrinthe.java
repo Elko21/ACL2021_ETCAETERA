@@ -9,6 +9,7 @@ public class Labyrinthe {
 	private Tresor tresor;
 	private Monstre monstre ;
 	private Piege trap;
+	private Teleportail tp;
 	private char terrain[][];
 	private int l;
 	private int h;
@@ -17,6 +18,7 @@ public class Labyrinthe {
 	public Tresor getTresor() { return this.tresor; }
 	public Monstre getMonstre() { return this.monstre; }
 	public Piege getTrap() {return this.trap;}
+	public Teleportail getTP() {return this.tp;}
 	
 	public char getTerrain(int i, int j) { return this.terrain[i][j]; }
 	public void setTerrain(int i, int j, char c) { this.terrain[i][j] = c; }
@@ -61,6 +63,10 @@ public class Labyrinthe {
 					break;
 				case 'p':
 					this.trap = new Piege(j*50,i*50);
+					break;
+				case 'r':
+					this.tp = new Teleportail(j*50,i*50);
+					break;
 				}
 			}
 		}

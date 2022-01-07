@@ -75,7 +75,7 @@ public class PacmanGame implements Game {
 			break;
 		}
 		
-	
+		
 		// Vérification si zone accessible
 		if (this.maze.canMove(x/50,y/50)) {
 			// Zone accessible donc le personnage (héros ou monstre) se déplace et laisse une case libre derrière lui
@@ -97,7 +97,11 @@ public class PacmanGame implements Game {
 				isCommande=false;
 			}
 			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
-
+			if (this.maze.getTP().canTeleport(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()))
+			{
+				this.maze.getHero().setPosX(250);
+				this.maze.getHero().setPosY(100);
+			}
 			
 		}
 		
