@@ -23,16 +23,27 @@ public class Personnage extends Entite{
 	}
 	
 	public void attack(Personnage ennemi) {
-		if (this.canAttack(ennemi)) ennemi.hp -= 1; //this.attaque;
+		if (this.canAttack(ennemi)) ennemi.hp--; //this.attaque;
 	}
 	
-	public int [] posVoisineRandom() {
-		int x,y;
-		int[] direction= {-50,0,50};
-		int i =(int) (3*Math.random());
-		x=this.getPosX()+direction[i];
-		int j =(int) (3*Math.random());
-		y=this.getPosY()+direction[j];
+	public int [] posVoisineRandom() { //Renvoie une position aléatoire au voisinnage de la position courante (U/D/R/L)
+		int x=this.getPosX(),y=this.getPosY();
+		int i =(int) (4*Math.random());
+		switch (i) {
+		case 0 : 
+			x =this.getPosX()-50;
+			break;
+		case 1 : 
+			x = this.getPosX()+50;
+			break;
+		case 2 : 
+			y=this.getPosY()-50;
+			break;
+		case 3 :
+			y=this.getPosY()+50;
+			break;
+		}
+
 		int [] pos = {x,y};
 		return pos;
 	}

@@ -93,29 +93,48 @@ public class PacmanGame implements Game {
 				// Processus d'attaque du monstre quand proche du héros
 				this.maze.getMonstre().attack(this.maze.getHero());
 				
-				if (isCommande) {
-					int xMonster,yMonster;
-					int x_old=this.maze.getMonstre().getPosX();
-					int y_old=this.maze.getMonstre().getPosY();
+				boolean monsterCantMove=true;
+				if (isCommande) { //Si on a une commande
+					while (monsterCantMove) {
+						int xMonsterNext,yMonsterNext; //Prochaine position possible du monstre
+						int xMonster_old=this.maze.getMonstre().getPosX(); //Position actuelle
+						int yMonster_old=this.maze.getMonstre().getPosY();
+						
+						xMonsterNext= this.maze.getMonstre().posVoisineRandom()[0]; //Prochaine position est la position voisine random
+						yMonsterNext= this.maze.getMonstre().posVoisineRandom()[1];
+						
+						// On choisit une position accessible pour le monstre
+						if (xMonster_old-xMonsterNext==50 && yMonster_old-yMonsterNext==0){
+							this.maze.getMonstre().setDirection('q');
+							if (this.maze.canMove(xMonsterNext/50, yMonsterNext/50)) {
+								this.maze.getMonstre().moveTo(xMonsterNext,yMonsterNext);
+							}
+							break;
+						}
+						else if (xMonster_old-xMonsterNext==-50 && yMonster_old-yMonsterNext==0){
+							this.maze.getMonstre().setDirection('d');
+							if (this.maze.canMove(xMonsterNext/50, yMonsterNext/50)) {
+								this.maze.getMonstre().moveTo(xMonsterNext,yMonsterNext);
+							}
+							break;
+
+						}
+						else if (xMonster_old-xMonsterNext==0 && yMonster_old-yMonsterNext==50){
+							this.maze.getMonstre().setDirection('z');
+							if (this.maze.canMove(xMonsterNext/50, yMonsterNext/50)) {
+								this.maze.getMonstre().moveTo(xMonsterNext,yMonsterNext);
+							}
+							break;
+
+						}
+						else if (xMonster_old-xMonsterNext==0 && yMonster_old-yMonsterNext==-50){
+							this.maze.getMonstre().setDirection('s');
+							if (this.maze.canMove(xMonsterNext/50, yMonsterNext/50)) {
+								this.maze.getMonstre().moveTo(xMonsterNext,yMonsterNext);
+							}
+							break;
+						}
 					
-					xMonster= this.maze.getMonstre().posVoisineRandom()[0];
-					yMonster= this.maze.getMonstre().posVoisineRandom()[1];
-					
-					if (x_old-xMonster==50 && y_old-yMonster==0){
-						this.maze.getMonstre().setDirection('q');
-					}
-					else if (x_old-xMonster==-50 && y_old-yMonster==0){
-						this.maze.getMonstre().setDirection('d');
-					}
-					else if (x_old-xMonster==0 && y_old-yMonster==50){
-						this.maze.getMonstre().setDirection('z');
-					}
-					else if (x_old-xMonster==0 && y_old-yMonster==-50){
-						this.maze.getMonstre().setDirection('s');
-					}
-					
-					if (this.maze.canMove(xMonster/50, yMonster/50)) {
-						this.maze.getMonstre().moveTo(xMonster,yMonster);
 					}
 					isCommande=false;
 				}
