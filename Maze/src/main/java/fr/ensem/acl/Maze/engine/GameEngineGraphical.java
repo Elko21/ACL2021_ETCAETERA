@@ -57,11 +57,11 @@ public class GameEngineGraphical {
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
 
 		// boucle de game
-		while (!(this.game.isFinished() || this.game.doesMonstreAttaque() || this.game.isTrapTriggered())) {
+		while (!(this.game.isFinished() || this.game.isTrapTriggered())) {
 			// demande controle utilisateur
-			Cmd c = this.gameController.getCommand();
+			Cmd[] c = this.gameController.getCommand();
 			// fait evoluer le game
-			this.game.evolve(c);
+			this.game.evolve(c[0],c[1]);
 			// affiche le game
 			this.gui.paint();
 			// met en attente

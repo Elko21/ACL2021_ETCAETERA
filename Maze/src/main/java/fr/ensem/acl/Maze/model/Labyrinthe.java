@@ -18,7 +18,7 @@ public class Labyrinthe {
 	public Tresor getTresor() { return this.tresor; }
 	public Monstre getMonstre() { return this.monstre; }
 	public Piege getTrap() {return this.trap;}
-	public Teleportail getTP() {return this.tp;}
+	public Teleportail getTP() {return this.tp; }
 	
 	public char getTerrain(int i, int j) { return this.terrain[i][j]; }
 	public void setTerrain(int i, int j, char c) { this.terrain[i][j] = c; }
@@ -73,20 +73,20 @@ public class Labyrinthe {
 	}
 	
 	public boolean canMove(int X,int Y) {
-		return (this.terrain[Y][X] != '-');		
+		return (this.terrain[Y][X] != '-' && this.terrain[Y][X] != 'm' && this.terrain[Y][X] != 'h');		
 	} 
 	
-	public boolean canDamage() {
+	public boolean isOppAround() {
 		int x = this.hero.getPosX()/50;
 		int y = this.hero.getPosY()/50;
 		
-		return (this.terrain[x-1][y-1] == 'm' || 
-				this.terrain[x-1][y+1] == 'm' || 
-				this.terrain[x+1][y-1] == 'm' || 
-				this.terrain[x+1][y+1] == 'm' || 
-				this.terrain[x][y-1] == 'm' || 
-				this.terrain[x-1][y] == 'm' || 
-				this.terrain[x][y+1] == 'm' || 
-				this.terrain[x+1][y] == 'm');
+		return (this.terrain[y-1][x-1] == 'm' || 
+				this.terrain[y+1][x-1] == 'm' || 
+				this.terrain[y-1][x+1] == 'm' || 
+				this.terrain[y+1][x+1] == 'm' || 
+				this.terrain[y-1][x] == 'm' || 
+				this.terrain[y][x-1] == 'm' || 
+				this.terrain[y+1][x] == 'm' || 
+				this.terrain[y][x+1] == 'm');
 	}
 }

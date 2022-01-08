@@ -14,15 +14,28 @@ import fr.ensem.acl.Maze.engine.GameController;
 public class PacmanController implements GameController {
 
 	/**
+	 * commande Action (attack, defend, take)
+	 */
+	private Cmd cmdActionEnCours;
+	
+	/**
+	 * detection de relachement de l'attaque
+	 */
+	private boolean isReleased = true;
+	
+	/**
 	 * commande en cours
 	 */
-	private Cmd commandeEnCours;
+	private Cmd cmdDirectionEnCours;
+	
+	
 	
 	/**
 	 * construction du controleur par defaut le controleur n'a pas de commande
 	 */
 	public PacmanController() {
-		this.commandeEnCours = Cmd.IDLE;
+		this.cmdActionEnCours = Cmd.IDLE;
+		this.cmdDirectionEnCours = Cmd.IDLE;
 	}
 
 	/**
@@ -31,8 +44,9 @@ public class PacmanController implements GameController {
 	 * 
 	 * @return commande faite par le joueur
 	 */
-	public Cmd getCommand() {
-		return this.commandeEnCours;
+	public Cmd[] getCommand() {
+		Cmd[] cmd = {this.cmdDirectionEnCours,this.cmdActionEnCours};
+		return cmd;
 	}
 	
 	@Override
@@ -41,23 +55,27 @@ public class PacmanController implements GameController {
 	 */
 	public void keyPressed(KeyEvent e) {
 		
-		switch (e.getKeyChar()) {
+		switch (e.getKeyCode()) {
 		// si on appuie sur 'q',commande joueur est gauche
-		case 'q':
-		case 'Q':
-			this.commandeEnCours = Cmd.LEFT;
+		case KeyEvent.VK_Q:
+		case KeyEvent.VK_LEFT:
+			this.cmdDirectionEnCours = Cmd.LEFT;
 			break;
-		case 'z':
-		case 'Z':
-			this.commandeEnCours = Cmd.UP;
+		case KeyEvent.VK_Z:
+		case KeyEvent.VK_UP:
+			this.cmdDirectionEnCours = Cmd.UP;
 			break;
-		case 's':
-		case 'S':
-			this.commandeEnCours = Cmd.DOWN;
+		case KeyEvent.VK_S:
+		case KeyEvent.VK_DOWN:
+			this.cmdDirectionEnCours = Cmd.DOWN;
 			break;
-		case 'd':
-		case 'D':
-			this.commandeEnCours = Cmd.RIGHT;
+		case KeyEvent.VK_D:
+		case KeyEvent.VK_RIGHT:
+			this.cmdDirectionEnCours = Cmd.RIGHT;
+			break;
+		case KeyEvent.VK_SPACE:
+			if (this.isReleased) { this.isReleased = false; this.cmdActionEnCours = Cmd.ATTACK; }
+			else this.cmdActionEnCours = Cmd.IDLE;
 			break;
 		}
 	}
@@ -67,7 +85,10 @@ public class PacmanController implements GameController {
 	 * met a jour les commandes quand le joueur relache une touche
 	 */
 	public void keyReleased(KeyEvent e) {
-		this.commandeEnCours = Cmd.IDLE;
+		this.cmdDirectionEnCours = Cmd.IDLE;
+		
+		this.isReleased = true;
+		this.cmdActionEnCours = Cmd.IDLE;
 	}
 
 	@Override
@@ -75,7 +96,7 @@ public class PacmanController implements GameController {
 	 * ne fait rien
 	 */
 	public void keyTyped(KeyEvent e) {
-
+		
 	}
 
 }

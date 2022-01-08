@@ -16,13 +16,13 @@ public interface Game {
 	 * @param userCmd
 	 *            commande utilisateur
 	 */
-	public void evolve(Cmd userCmd);
+	public void evolve(Cmd userCmdDirection,Cmd userCmdAction);
 
 	/**
 	 * @return true si et seulement si le jeu est fini
 	 */
 	public boolean isFinished();
-	public boolean doesMonstreAttaque();
+	// public boolean doesMonstreAttaque();
 	public boolean isTrapTriggered();
 
 

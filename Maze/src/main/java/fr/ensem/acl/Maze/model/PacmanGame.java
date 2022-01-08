@@ -45,14 +45,14 @@ public class PacmanGame implements Game {
 	 * 
 	 * @param commande
 	 */
-	@Override
-	public void evolve(Cmd commande) {
-		System.out.println("Execute "+commande);
+	@Override 
+	public void evolve(Cmd cmdDir,Cmd cmdAction) {
+		System.out.println("Execute " + cmdDir + " and " + cmdAction);
 		int x = this.maze.getHero().getPosX();
 		int y = this.maze.getHero().getPosY();
 		
 		boolean isCommande = false;
-		switch(commande){
+		switch(cmdDir){
 		case LEFT:
 			x = x - 50;
 			this.maze.getHero().setDirection('q');
@@ -75,6 +75,8 @@ public class PacmanGame implements Game {
 			break;
 		}
 		
+		// Processus d'attaque du héros quand commande activée 
+		if (cmdAction == Cmd.ATTACK) this.maze.getHero().attack(this.maze.getMonstre());
 		
 		// Vérification si zone accessible
 		if (this.maze.canMove(x/50,y/50)) {
@@ -86,34 +88,41 @@ public class PacmanGame implements Game {
 			this.maze.setTerrain((this.maze.getHero().getPosY()/50),(this.maze.getHero().getPosX()/50),'h');			
 			
 			// Mise à jour de la position du/des monstre(s)
-			
-			if (isCommande) {
-				int xMonster,yMonster;
-				int x_old=this.maze.getMonstre().getPosX();
-				int y_old=this.maze.getMonstre().getPosY();
+			// Vérifier d'abord si le monstre n'est pas mort
+			if (this.maze.getMonstre().getHP() != 0) {
+				// Processus d'attaque du monstre quand proche du héros
+				this.maze.getMonstre().attack(this.maze.getHero());
 				
-				xMonster= this.maze.getMonstre().posVoisineRandom()[0];
-				yMonster= this.maze.getMonstre().posVoisineRandom()[1];
-				
-				if (x_old-xMonster==50 && y_old-yMonster==0){
-					this.maze.getMonstre().setDirection('q');
+				if (isCommande) {
+					int xMonster,yMonster;
+					int x_old=this.maze.getMonstre().getPosX();
+					int y_old=this.maze.getMonstre().getPosY();
+					
+					xMonster= this.maze.getMonstre().posVoisineRandom()[0];
+					yMonster= this.maze.getMonstre().posVoisineRandom()[1];
+					
+					if (x_old-xMonster==50 && y_old-yMonster==0){
+						this.maze.getMonstre().setDirection('q');
+					}
+					else if (x_old-xMonster==-50 && y_old-yMonster==0){
+						this.maze.getMonstre().setDirection('d');
+					}
+					else if (x_old-xMonster==0 && y_old-yMonster==50){
+						this.maze.getMonstre().setDirection('z');
+					}
+					else if (x_old-xMonster==0 && y_old-yMonster==-50){
+						this.maze.getMonstre().setDirection('s');
+					}
+					
+					if (this.maze.canMove(xMonster/50, yMonster/50)) {
+						this.maze.getMonstre().moveTo(xMonster,yMonster);
+					}
+					isCommande=false;
 				}
-				else if (x_old-xMonster==-50 && y_old-yMonster==0){
-					this.maze.getMonstre().setDirection('d');
-				}
-				else if (x_old-xMonster==0 && y_old-yMonster==50){
-					this.maze.getMonstre().setDirection('z');
-				}
-				else if (x_old-xMonster==0 && y_old-yMonster==-50){
-					this.maze.getMonstre().setDirection('s');
-				}
-				
-				if (this.maze.canMove(xMonster/50, yMonster/50)) {
-					this.maze.getMonstre().moveTo(xMonster,yMonster);
-				}
-				isCommande=false;
+				this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
 			}
-			this.maze.setTerrain((this.maze.getMonstre().getPosY()/50),(this.maze.getMonstre().getPosX()/50),'m');
+			
+			
 			if (this.maze.getTP().canTeleport(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()))
 			{
 				this.maze.getHero().setPosX(250);
@@ -131,7 +140,7 @@ public class PacmanGame implements Game {
 	
 	@Override
 	public boolean isFinished() {
-		return(this.maze.getTresor().isEnd(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
+		return(this.maze.getHero().getHP() == 0 || this.maze.getTresor().isEnd(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
 	}
 	
 	@Override
@@ -139,9 +148,11 @@ public class PacmanGame implements Game {
 		return (this.maze.getTrap().isTriggered(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
 	}
 	
+	/*
 	@Override
 	public boolean doesMonstreAttaque() {
 		return(this.maze.getHero().getPosX()==this.maze.getMonstre().getPosX() && this.maze.getHero().getPosY()==this.maze.getMonstre().getPosY());
 	}
+	*/
 
 }

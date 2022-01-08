@@ -174,9 +174,9 @@ public class PacmanPainter implements GamePainter {
 		g.setFont(font);
 	    g.setColor(Color.BLACK);
 	    
-		if (this.jeu.isFinished()) endText = "Le TRESOR !!! Vous êtes riche !";
+		if (this.jeu.isFinished()) if(this.jeu.getLabyrinthe().getHero().getHP() == 0) endText= "Ouch !!! Le monstre vous a eu ..."; 
+		else endText = "Le TRESOR !!! Vous êtes riche !";
 		else if (this.jeu.isTrapTriggered()) endText = "Un PIEGE !!! Vous êtes mort !";
-		else if(this.jeu.doesMonstreAttaque()) endText= "Ouch !!! Le monstre vous a eu ...";
 		else endText = "";
 		
 	    g.drawString(endText, Math.round(this.WIDTH/2) - 25*Math.round(endText.length()/2), Math.round((this.HEIGHT-50)/2));

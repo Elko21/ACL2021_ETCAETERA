@@ -23,7 +23,7 @@ public class Personnage extends Entite{
 	}
 	
 	public void attack(Personnage ennemi) {
-		if (this.canAttack(ennemi)) ennemi.hp -= this.attaque;
+		if (this.canAttack(ennemi)) ennemi.hp -= 1; //this.attaque;
 	}
 	
 	public int [] posVoisineRandom() {
@@ -47,7 +47,7 @@ public class Personnage extends Entite{
 		int yo = ennemi.getPosY()/50;
 		
 		boolean att = false;
-		switch(this.getDirection()) {
+		switch(this.dir) {
 			case 'z':
 				att = ((x == xo && y-1 == yo) || (x-1 == xo && y-1 == yo) || (x+1 == xo && y-1 == yo));
 			case 's':
