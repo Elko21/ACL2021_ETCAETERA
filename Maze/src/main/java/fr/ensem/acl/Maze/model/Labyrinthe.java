@@ -53,13 +53,13 @@ public class Labyrinthe {
 			for(int j=0;j<l;j++) {
 				switch(this.terrain[i][j]) {
 				case 'h':
-					this.hero=new Hero(j*50,i*50);
+					this.hero=new Hero(j*50,i*50,5);
 					break;
 				case 't':
 					this.tresor= new Tresor(j*50,i*50);
 					break;
 				case 'm':
-					this.monstre = new Monstre(j*50,i*50);
+					this.monstre = new Monstre(j*50,i*50,1);
 					break;
 				case 'p':
 					this.trap = new Piege(j*50,i*50);

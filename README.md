@@ -23,7 +23,7 @@
 		_ Ouvrir l'invite de commande
 		_ Aller au répertoire du projet où se situe le fichier pom.xml (Project Object Model)
 		_ Exécuter la ligne de commande suivante : mvn clean install
-		_ Ensuite : java -jar target/Maze-3.2.0.jar
+		_ Ensuite : java -jar target/Maze-4.0.0.jar
 
 # Comment jouer au jeu du labyrinthe qu'on a nommé "Maze" ?
 	(EN COURS DE RÉDACTION ....)

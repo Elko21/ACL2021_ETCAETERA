@@ -8,9 +8,12 @@ public class Personnage extends Entite{
 	
 	public void setDirection(char c) { this.dir = c; }
 	public char getDirection() { return this.dir; }
+	public void setHP(int h) { this.hp = h; }
+	public int getHP() { return this.hp; }
 	
-	public Personnage(int x, int y){
+	public Personnage(int x, int y, int h){
 		super(x,y);
+		this.hp = h;
 		this.dir = 'd';
 	}
 	

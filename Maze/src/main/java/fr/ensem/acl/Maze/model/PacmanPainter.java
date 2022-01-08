@@ -36,7 +36,7 @@ public class PacmanPainter implements GamePainter {
 	public PacmanPainter(PacmanGame jeu) {
 		this.jeu = jeu;
 		this.WIDTH = this.jeu.getLabyrinthe().getL() * 50;
-		this.HEIGHT = this.jeu.getLabyrinthe().getH() * 50;
+		this.HEIGHT = (this.jeu.getLabyrinthe().getH()+1) * 50;
 	}
 
 	/**
@@ -69,12 +69,13 @@ public class PacmanPainter implements GamePainter {
 		}
 		drawHP(im);
 		drawEndingMessage(im);
+		drawHP(im);
 	}
 	
 	public void drawGround(BufferedImage im) {
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		groundgraph.setColor(new Color(208,212,92));
-		groundgraph.fillRect(0,0,WIDTH,HEIGHT);
+		groundgraph.fillRect(0,0,this.WIDTH,this.HEIGHT);
 	}
 	
 	public void drawWall(BufferedImage im, int X, int Y) {
@@ -178,14 +179,29 @@ public class PacmanPainter implements GamePainter {
 		else if(this.jeu.doesMonstreAttaque()) endText= "Ouch !!! Le monstre vous a eu ...";
 		else endText = "";
 		
-	    g.drawString(endText, Math.round(this.WIDTH/2) - 25*Math.round(endText.length()/2), Math.round(this.HEIGHT/2));
+	    g.drawString(endText, Math.round(this.WIDTH/2) - 25*Math.round(endText.length()/2), Math.round((this.HEIGHT-50)/2));
 	}
 	
 	public void drawHP(BufferedImage im) {
 		Graphics g = (Graphics) im.getGraphics();
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		
+		Font font = new Font("Arial", Font.BOLD, 25);
+		g.setFont(font);
+	    g.setColor(Color.BLACK);
+	    g.drawString("HP",this.WIDTH-50,this.HEIGHT-20);
+	    
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("resources/img/Other/Heart.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < this.jeu.getLabyrinthe().getHero().getHP(); i++) {
+			groundgraph.drawImage(img,(this.WIDTH-90)-i*50,this.HEIGHT-40,25,25, null);
+		}
 	}
-	
 	
 	@Override
 	public int getWidth() {
