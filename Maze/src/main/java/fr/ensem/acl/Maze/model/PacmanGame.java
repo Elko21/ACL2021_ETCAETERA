@@ -116,6 +116,15 @@ public class PacmanGame implements Game {
 		int x = this.maze.getHero().getPosX();
 		int y = this.maze.getHero().getPosY();
 		
+		// Processus d'attaque du héros quand commande activée 
+		if (cmdAction == Cmd.ATTACK) {
+			this.maze.getHero().attack(this.maze.getSquelette());
+			System.out.println("PV Squelette : " + Integer.toString(this.maze.getSquelette().getHP()));
+			this.maze.getHero().attack(this.maze.getFantome());
+			System.out.println("PV Fantome : " + Integer.toString(this.maze.getFantome().getHP()));
+		}
+		
+		
 		switch(cmdDir){
 		case LEFT:
 			x = x - 50;
@@ -134,9 +143,6 @@ public class PacmanGame implements Game {
 			this.maze.getHero().setDirection('z');
 			break;
 		}
-		
-		// Processus d'attaque du héros quand commande activée 
-		if (cmdAction == Cmd.ATTACK) this.maze.getHero().attack(this.maze.getSquelette());
 		
 		// Vérification si zone accessible
 		if (this.maze.canMove(x/50,y/50)) {
@@ -161,7 +167,7 @@ public class PacmanGame implements Game {
 		
 		// Mise à jour de la position du fantome
 		// Vérifier d'abord si le fantome n'est pas mort
-		if (this.maze.getSquelette().getHP() != 0) {
+		if (this.maze.getSquelette().getHP() > 0) {
 			// Processus d'attaque du fantome quand proche du héros
 			this.maze.getSquelette().attack(this.maze.getHero());
 				
@@ -213,8 +219,10 @@ public class PacmanGame implements Game {
 				this.maze.setTerrain((this.maze.getSquelette().getPosY()/50),(this.maze.getSquelette().getPosX()/50),'s');
 
 		}
+		else this.maze.setTerrain((this.maze.getSquelette().getPosY()/50),(this.maze.getSquelette().getPosX()/50),'+');		// Quand monstre meurt il laisse un espace après lui
 		
-		if (this.maze.getFantome().getHP() != 0) {
+		
+		if (this.maze.getFantome().getHP() > 0) {
 			// Processus d'attaque du fantome quand proche du héros
 			this.maze.getFantome().attack(this.maze.getHero());
 				
@@ -288,7 +296,11 @@ public class PacmanGame implements Game {
 				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'f');
 
 		}
-		
+		else 
+			if (this.maze2.getTerrain(this.maze.getFantome().getPosY()/50, this.maze.getFantome().getPosX()/50) == '-')
+				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'-');
+			else
+				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'-');
 		
 	}
 
@@ -305,13 +317,5 @@ public class PacmanGame implements Game {
 	@Override
 	public boolean isTrapTriggered() {
 		return (this.maze.getTrap().isTriggered(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
-	}
-	
-	/*
-	@Override
-	public boolean doesMonstreAttaque() {
-		return(this.maze.getHero().getPosX()==this.maze.getSquelette().getPosX() && this.maze.getHero().getPosY()==this.maze.getSquelette().getPosY());
-	}
-	*/
-
+	}	
 }
