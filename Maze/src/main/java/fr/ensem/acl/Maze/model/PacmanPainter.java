@@ -169,19 +169,36 @@ public class PacmanPainter implements GamePainter {
 	
 	public void drawFantome(BufferedImage im) {
 		
+		int k=0;
+		char dir=this.jeu.getLabyrinthe().getFantome().getDirection();
+		
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("resources/img/Ghost/ghost.png"));
+			img = ImageIO.read(new File("resources/img/Ghost/ghost_4Sides.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		if (dir=='s'){
+			k=0;
+			
+		}
+		else if (dir=='d'){
+			k=1;
+		}
+		else if (dir=='z'){
+			k=2;
+		}
+		else if(dir=='q'){
+			k=3;
 		}
 		
 		
 		int X=this.jeu.getLabyrinthe().getFantome().getPosX()+2;
 		int Y=this.jeu.getLabyrinthe().getFantome().getPosY()+2;
-		groundgraph.drawImage(img,X,Y,46,46, null);
-		}
+		groundgraph.drawImage(img,X,Y,46+X,46+Y,28*k,0,28*k+28,28, null);
+	}
+	
 	public void drawEndingMessage(BufferedImage im) {
 		Graphics g = (Graphics) im.getGraphics();
 		String endText;
