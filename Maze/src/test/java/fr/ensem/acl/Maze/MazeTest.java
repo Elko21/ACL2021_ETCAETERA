@@ -1,4 +1,4 @@
-package fr.ensem.acl.Maze;
+/*package fr.ensem.acl.Maze;
 
 import static org.junit.Assert.*;
 
@@ -86,3 +86,4 @@ public class MazeTest {
 	}
 
 }
+*/

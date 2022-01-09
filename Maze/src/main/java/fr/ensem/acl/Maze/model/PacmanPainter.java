@@ -61,8 +61,11 @@ public class PacmanPainter implements GamePainter {
 					case 't':
 						drawTresor(im);
 						break;		
-					case 'm':
-						drawMonstre(im);
+					case 's':
+						drawSquelette(im);
+						break;
+					case 'f':
+						drawFantome(im);
 						break;
 				}					
 			}
@@ -133,9 +136,9 @@ public class PacmanPainter implements GamePainter {
 		groundgraph.drawImage(img,this.jeu.getLabyrinthe().getTresor().getPosX()+2,this.jeu.getLabyrinthe().getTresor().getPosY()+2,46,46, null);
 	}
 	
-	public void drawMonstre(BufferedImage im) {
+	public void drawSquelette(BufferedImage im) {
 		int k=0;
-		char dir=this.jeu.getLabyrinthe().getMonstre().getDirection();
+		char dir=this.jeu.getLabyrinthe().getSquelette().getDirection();
 		
 		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
 		BufferedImage img = null;
@@ -159,12 +162,26 @@ public class PacmanPainter implements GamePainter {
 		}
 		
 		
-		int X=this.jeu.getLabyrinthe().getMonstre().getPosX()+2;
-		int Y=this.jeu.getLabyrinthe().getMonstre().getPosY()+2;
+		int X=this.jeu.getLabyrinthe().getSquelette().getPosX()+2;
+		int Y=this.jeu.getLabyrinthe().getSquelette().getPosY()+2;
 		groundgraph.drawImage(img,X,Y,46+X,46+Y,16*k,0,16*k+16,16, null);
 	}
 	
-	
+	public void drawFantome(BufferedImage im) {
+		
+		Graphics2D groundgraph = (Graphics2D) im.getGraphics();
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("resources/img/Ghost/ghost.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		int X=this.jeu.getLabyrinthe().getFantome().getPosX()+2;
+		int Y=this.jeu.getLabyrinthe().getFantome().getPosY()+2;
+		groundgraph.drawImage(img,X,Y,46,46, null);
+		}
 	public void drawEndingMessage(BufferedImage im) {
 		Graphics g = (Graphics) im.getGraphics();
 		String endText;

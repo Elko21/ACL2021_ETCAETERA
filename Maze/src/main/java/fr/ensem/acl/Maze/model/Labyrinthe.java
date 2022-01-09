@@ -7,7 +7,8 @@ import java.io.IOException;
 public class Labyrinthe {
 	private Hero hero;
 	private Tresor tresor;
-	private Monstre monstre ;
+	private Squelette squelette ;
+	private Fantome fantome;
 	private Piege trap;
 	private Teleportail tp;
 	private char terrain[][];
@@ -16,7 +17,8 @@ public class Labyrinthe {
 
 	public Hero getHero() { return this.hero; }
 	public Tresor getTresor() { return this.tresor; }
-	public Monstre getMonstre() { return this.monstre; }
+	public Squelette getSquelette() { return this.squelette; }
+	public Fantome getFantome() {return this.fantome; }
 	public Piege getTrap() {return this.trap;}
 	public Teleportail getTP() {return this.tp; }
 	
@@ -58,9 +60,11 @@ public class Labyrinthe {
 				case 't':
 					this.tresor= new Tresor(j*50,i*50);
 					break;
-				case 'm':
-					this.monstre = new Monstre(j*50,i*50,1);
+				case 's':
+					this.squelette = new Squelette(j*50,i*50,1);
 					break;
+				case 'f' :
+					this.fantome = new Fantome(j*50,i*50,1);
 				case 'p':
 					this.trap = new Piege(j*50,i*50);
 					break;
@@ -73,20 +77,36 @@ public class Labyrinthe {
 	}
 	
 	public boolean canMove(int X,int Y) {
-		return (this.terrain[Y][X] != '-' && this.terrain[Y][X] != 'm' && this.terrain[Y][X] != 'h');		
+		return (this.terrain[Y][X] != '-' && this.terrain[Y][X] != 's'  && this.terrain[Y][X] != 'h' && this.terrain[Y][X] != 'f');		
 	} 
 	
+	public boolean canMoveSquelette(int X,int Y) {
+		return (this.terrain[Y][X] != '-' && this.terrain[Y][X] != 's' && this.terrain[Y][X]!='t' && this.terrain[Y][X] != 'h' && this.terrain[Y][X] != 'f');		
+	} 
+	
+	public boolean canMoveFantome(int X,int Y) {
+		return (this.terrain[Y][X] != 's' && this.terrain[Y][X] != 'h' && this.terrain[Y][X]!='t' && this.terrain[Y][X] != 'f' && X>0 && Y>0 && Y<h-1 && X<l-1);		
+
+	}
 	public boolean isOppAround() {
 		int x = this.hero.getPosX()/50;
 		int y = this.hero.getPosY()/50;
 		
-		return (this.terrain[y-1][x-1] == 'm' || 
-				this.terrain[y+1][x-1] == 'm' || 
-				this.terrain[y-1][x+1] == 'm' || 
-				this.terrain[y+1][x+1] == 'm' || 
-				this.terrain[y-1][x] == 'm' || 
-				this.terrain[y][x-1] == 'm' || 
-				this.terrain[y+1][x] == 'm' || 
-				this.terrain[y][x+1] == 'm');
+		return (this.terrain[y-1][x-1] == 's' || 
+				this.terrain[y+1][x-1] == 's' || 
+				this.terrain[y-1][x+1] == 's' || 
+				this.terrain[y+1][x+1] == 's' || 
+				this.terrain[y-1][x] == 's' || 
+				this.terrain[y][x-1] == 's' || 
+				this.terrain[y+1][x] == 's' || 
+				this.terrain[y][x+1] == 's' ||
+				this.terrain[y-1][x-1] == 'f' || 
+				this.terrain[y+1][x-1] == 'f' || 
+				this.terrain[y-1][x+1] == 'f' || 
+				this.terrain[y+1][x+1] == 'f' || 
+				this.terrain[y-1][x] == 'f' || 
+				this.terrain[y][x-1] == 'f' || 
+				this.terrain[y+1][x] == 'f' || 
+				this.terrain[y][x+1] == 'f');
 	}
 }
