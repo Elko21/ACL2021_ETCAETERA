@@ -297,8 +297,8 @@ public class PacmanGame implements Game {
 
 		}
 		else 
-			if (this.maze2.getTerrain(this.maze.getFantome().getPosY()/50, this.maze.getFantome().getPosX()/50) == '-')
-				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'-');
+			if (this.maze2.getTerrain(this.maze.getFantome().getPosY()/50, this.maze.getFantome().getPosX()/50) == '+')
+				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'+');
 			else
 				this.maze.setTerrain((this.maze.getFantome().getPosY()/50),(this.maze.getFantome().getPosX()/50),'-');
 		
