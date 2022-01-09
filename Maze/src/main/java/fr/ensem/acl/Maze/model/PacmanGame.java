@@ -310,7 +310,6 @@ public class PacmanGame implements Game {
 	
 	@Override
 	public boolean isFinished() {
-		
 		return(this.maze.getHero().getHP() == 0 || this.maze.getTresor().isEnd(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
 	}
 	

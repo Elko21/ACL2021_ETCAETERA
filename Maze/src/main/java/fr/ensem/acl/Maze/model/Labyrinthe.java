@@ -88,7 +88,7 @@ public class Labyrinthe {
 	} 
 	
 	public boolean canMoveFantome(int X,int Y) {
-		return (this.terrain[Y][X] != 's' && this.terrain[Y][X] != 'h' && this.terrain[Y][X]!='t' && this.terrain[Y][X] != 'f' && X>0 && Y>0 && Y<h-1 && X<l-1);		
+		return (this.terrain[Y][X] != 's' && this.terrain[Y][X] != 'h' && this.terrain[Y][X]!='t' && this.terrain[Y][X] != 'f' && X>0 && Y>0 && Y<(h-1) && X<(l-1));		
 
 	}
 	public boolean isOppAround() {

@@ -1,4 +1,4 @@
-/*package fr.ensem.acl.Maze;
+package fr.ensem.acl.Maze;
 
 import static org.junit.Assert.*;
 
@@ -12,59 +12,61 @@ public class MazeTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		lab = new Labyrinthe("resources/maps/mapTest.txt");
+		this.lab = new Labyrinthe("resources/maps/mapTest.txt");
 	}
+	
 	
 	@Test
 	public void test1HeroLabyrinthe() {
-		assertEquals(1*50,this.lab.getHero().getPosX());
+		assertEquals(1,this.lab.getHero().getPosX()/50);
 	}
 	
+	/*
 	@Test
 	public void test2HeroLabyrinthe() {
-		assertEquals(1*50,this.lab.getHero().getPosY());
+		assertEquals(1,this.lab.getHero().getPosY()/50);
 	}
 	
 	@Test
 	public void test1MonstreLabyrinthe() {
-		assertEquals(1*50,this.lab.getMonstre().getPosX());
+		assertEquals(1,this.lab.getSquelette().getPosX()/50);
 	}
 	
 	@Test
 	public void test2MonstreLabyrinthe() {
-		assertEquals(3*50,this.lab.getMonstre().getPosY());
+		assertEquals(3,this.lab.getSquelette().getPosY()/50);
 	}
 	
 	@Test
 	public void test1PiegeLabyrinthe() {
-		assertEquals(3*50,this.lab.getTrap().getPosX());
+		assertEquals(3,this.lab.getTrap().getPosX()/50);
 	}
 	
 	@Test
 	public void test2PiegeLabyrinthe() {
-		assertEquals(1*50,this.lab.getTrap().getPosY());
+		assertEquals(1,this.lab.getTrap().getPosY()/50);
 	}
 	
 	@Test
 	public void test1TresorLabyrinthe() {
-		assertEquals(3*50,this.lab.getTresor().getPosX());
+		assertEquals(3,this.lab.getTresor().getPosX()/50);
 	}
 	
 	@Test
 	public void test2TresorLabyrinthe() {
-		assertEquals(3*50,this.lab.getTresor().getPosY());
+		assertEquals(3,this.lab.getTresor().getPosY()/50);
 	}
 	
 	@Test
 	public void test1MoveTo() {
 		this.lab.getHero().moveTo(this.lab.getHero().getPosX(),2*50);
-		assertEquals(2*50,this.lab.getHero().getPosY());
+		assertEquals(2,this.lab.getHero().getPosY()/50);
 	}
 	
 	@Test
 	public void test2MoveTo() {
 		this.lab.getHero().moveTo(2*50,this.lab.getHero().getPosY());
-		assertEquals(2*50,this.lab.getHero().getPosX());
+		assertEquals(2,this.lab.getHero().getPosX()/50);
 	}
 	
 	@Test
@@ -84,6 +86,6 @@ public class MazeTest {
 		this.lab.getHero().moveTo(3*50,1*50);
 		assertTrue(this.lab.canMove(this.lab.getHero().getPosX()/50,this.lab.getHero().getPosY()/50));
 	}
-
+	*/
 }
-*/
+
