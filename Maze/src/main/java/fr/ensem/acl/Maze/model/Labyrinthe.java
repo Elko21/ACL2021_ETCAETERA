@@ -72,8 +72,11 @@ public class Labyrinthe {
 					this.tp = new Teleportail(j*50,i*50);
 					break;
 				}
+				
 			}
 		}
+		
+		
 	}
 	
 	public boolean canMove(int X,int Y) {

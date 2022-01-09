@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import fr.ensem.acl.Maze.engine.Game;
 
@@ -31,8 +33,65 @@ public class PacmanGame implements Game {
 	 * 
 	 */
 	public PacmanGame(String source) {
-		this.maze = new Labyrinthe("resources/maps/maze.txt");
-		this.maze2= new Labyrinthe("resources/maps/maze2.txt");
+		
+		int dif =0;
+		try {
+			
+		while(dif > 3 || dif <1) {
+		Scanner difficulty = new Scanner(System.in);
+		System.out.println("Quel niveau voulez vous faire ?(1/2/3)");
+		dif = difficulty.nextInt();
+		}
+		} catch(InputMismatchException e) {
+			System.out.println("Il faut donner un chiffre entre 1 et 3");
+		}
+		
+		switch(dif) {
+		case 1:
+			this.maze = new Labyrinthe("resources/maps/maze.txt");
+			this.maze2 = new Labyrinthe("resources/maps/mazeplain.txt");			
+			break;
+		case 2:
+			this.maze = new Labyrinthe("resources/maps/maze2.txt");
+			this.maze2 = new Labyrinthe("resources/maps/mazeplain2.txt");
+			break;
+		case 3:
+			this.maze = new Labyrinthe("resources/maps/maze3.txt");
+			this.maze2 = new Labyrinthe("resources/maps/mazeplain3.txt");
+			break;
+		}
+		try {
+			this.maze.getHero().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un héros");
+		}
+		try {
+			this.maze.getFantome().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un fantome");
+		}
+		try {
+			this.maze.getSquelette().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un squelette");
+		}
+		try {
+			this.maze.getTresor().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un trésor");
+		}
+		try {
+			this.maze.getTrap().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un piège");
+		}
+		try {
+			this.maze.getTP().toString();
+		}catch(NullPointerException e) {
+			System.out.println("Il manque un portail");
+		}
+		
+		
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
@@ -239,6 +298,7 @@ public class PacmanGame implements Game {
 	
 	@Override
 	public boolean isFinished() {
+		
 		return(this.maze.getHero().getHP() == 0 || this.maze.getTresor().isEnd(this.maze.getHero().getPosX(), this.maze.getHero().getPosY()));
 	}
 	
