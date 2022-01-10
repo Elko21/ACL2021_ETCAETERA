@@ -2,7 +2,7 @@ package fr.ensem.acl.Maze.model;
 
 public class Personnage extends Entite{
 	private int hp;
-	private int attaque;
+	private int force;
 	private int speed;
 	private char dir;
 	
