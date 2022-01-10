@@ -2,7 +2,7 @@ package fr.ensem.acl.Maze.model;
 
 public class Personnage extends Entite{
 	private int hp;
-	private int attaque;
+	private int force;
 	private int speed;
 	private char dir;
 	
@@ -26,7 +26,7 @@ public class Personnage extends Entite{
 	public void attack(Personnage ennemi) {
 		if (this.canAttack(ennemi)) {
 			if(ennemi.hp>0)
-			ennemi.hp--; //this.attaque;
+			ennemi.hp--;
 			else ennemi.hp=0;
 		}
 	}
