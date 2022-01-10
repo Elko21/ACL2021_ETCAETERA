@@ -6,10 +6,11 @@ public class Personnage extends Entite{
 	private int speed;
 	private char dir;
 	
-	public void setDirection(char c) { this.dir = c; }
+	public void setDirection(char c) {this.dir = c;};
 	public char getDirection() { return this.dir; }
-	public void setHP(int h) { this.hp = h; }
+	public void setHP(int h) { this.hp=h; }
 	public int getHP() { return this.hp; }
+	
 	
 	public Personnage(int x, int y, int h){
 		super(x,y);
@@ -23,7 +24,11 @@ public class Personnage extends Entite{
 	}
 	
 	public void attack(Personnage ennemi) {
-		if (this.canAttack(ennemi)) ennemi.hp--; //this.attaque;
+		if (this.canAttack(ennemi)) {
+			if(ennemi.hp>0)
+			ennemi.hp--; //this.attaque;
+			else ennemi.hp=0;
+		}
 	}
 	
 	public int [] posVoisineRandom() { //Renvoie une position aléatoire au voisinnage de la position courante (U/D/R/L)
@@ -67,6 +72,8 @@ public class Personnage extends Entite{
 				att = ((x-1 == xo && y == yo) || (x-1 == xo && y-1 == yo) || (x-1 == xo && y+1 == yo));
 			case 'd':
 				att = ((x+1 == xo && y == yo) || (x+1 == xo && y-1 == yo) || (x+1 == xo && y+1 == yo));
+				
+					
 		}
 		
 		return att;
