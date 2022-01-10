@@ -23,9 +23,10 @@
 		_ Ouvrir l'invite de commande
 		_ Aller au répertoire du projet où se situe le fichier pom.xml (Project Object Model)
 		_ Exécuter la ligne de commande suivante : mvn clean install
-		_ Ensuite : java -jar target/Maze-4.0.0.jar
+		_ Ensuite : java -jar target/Maze-4.1.0.jar
 
 # Comment jouer au jeu du labyrinthe qu'on a nommé "Maze" ?
 	_L'utilisateur a une marge de choix de 3 niveaux. En saisissant le numéro du niveau correspondant, le je se lance dans une nouvelle fenêtre et la partie est lancée.
 	_L'utilisateur peut déplacer le héros en utilisant les flèches du clavier ou en utilisant les touches Z, Q, S, D : Z pour le haut, Q pour la gauche, S pour le bas et D pour la droite. Le héros peut également attaquer les monstres en utilisant la touche Espace.
 	_La partie est déclarée gagnée si le héros atteint le trésor.
+	_La partie est perdue si le héros tombe dans un piège ou perd tous ses points de vie (HP) en se faisant attaquer par les monstres.

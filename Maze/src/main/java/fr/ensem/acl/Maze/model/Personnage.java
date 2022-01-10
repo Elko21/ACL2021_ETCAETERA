@@ -26,7 +26,7 @@ public class Personnage extends Entite{
 	public void attack(Personnage ennemi) {
 		if (this.canAttack(ennemi)) {
 			if(ennemi.hp>0)
-			ennemi.hp--; //this.attaque;
+			ennemi.hp--;
 			else ennemi.hp=0;
 		}
 	}
